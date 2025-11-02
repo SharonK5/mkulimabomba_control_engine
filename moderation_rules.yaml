@@ -1,0 +1,11 @@
+rules:
+  - id: 1
+    description: "Do not recommend banned chemicals"
+    keywords: ["banned", "illegal"]
+    action: "BLOCK"
+  - id: 2
+    description: "Moderate advice on high-risk pesticides"
+    keywords: ["pesticide", "herbicide"]
+    action: "MODERATE"
+    threshold: 0.7
+

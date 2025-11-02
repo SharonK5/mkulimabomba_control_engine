@@ -1,0 +1,41 @@
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+
+# Placeholder for database functions (replace with real ones later)
+def get_db():
+    # In real app: yield session, handle cleanup
+    yield None
+
+def init_db():
+    # Example: create tables
+    pass
+
+app = FastAPI(
+    title="MkulimaBomba Control Engine",
+    description="AI-powered agricultural decision support system",
+    version="2.0.0"
+)
+
+@app.on_event("startup")
+async def startup_event():
+    init_db()
+
+@app.get("/")
+async def root():
+    return {"message": "MkulimaBomba Control Engine API - Healthy"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "control_engine"}
+
+@app.get("/analytics/popular-queries")
+async def get_popular_queries(db: Session = Depends(get_db)):
+    return {"popular_queries": ["fertilizer for maize", "pest control", "planting season"]}
+
+@app.get("/analytics/region-stats")
+async def get_region_stats(db: Session = Depends(get_db)):
+    return {"regions": {"Central": 45, "Rift Valley": 38, "Eastern": 27}}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
