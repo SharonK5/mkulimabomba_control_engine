@@ -6,7 +6,7 @@
 # Python
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 *.so
 .Python
 env/
@@ -29,23 +29,24 @@ wheels/
 # Virtual environments
 venv/
 ENV/
-.env
 .venv/
 .env/bin/
 
-# SQLite database (optional: omit if you want to share a dev DB)
+# SQLite database (local dev only)
 mkulimabomba.db
 
-# IDEs & Editors
+# Logs
+*.log
+logs/
+
+# Editors and IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 .DS_Store
 
-# Logs
-logs/
-*.log
-
-# Local config (if any)
-config/local.yaml
+# Other
+.coverage
+htmlcov/
+.pytest_cache/
